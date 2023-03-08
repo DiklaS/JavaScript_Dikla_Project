@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Young Art</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="toast.css" />
+    <link rel="icon" type="image/x-icon" href="../public/assets/imgs/1.jpg">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand font-family-base" href="#" id="nav-logo-link" style="color:white">Young Art</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto my-2 my-lg-0" >
+              <li class="nav-item" >
+                <a class="nav-link" href="#" id="nav-aboutus-link">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="nav-add-new-property-link">Add New Picture</a>
+              </li>
+            </ul>
+            <form class="d-flex responsive-nav-flex" role="search" id="navBeforeLogin">
+              <a class="nav-link me-3" href="#" id="nav-register-page"
+                >Signup</a>
+              <a class="nav-link responsive-mt" href="#" id="nav-login-page"
+                >Login</a
+              >
+            </form>
+            <form
+              class="d-flex responsive-nav-flex d-none"
+              role="search"
+              id="navAfterLogin">
+              <a class="nav-link me-3" href="#" id="nav-my-favorites-page">My Favorites</a>
+              <a class="nav-link me-3" href="#" id="nav-edit-profile-page">Name</a>
+              <a class="nav-link responsive-mt" href="#" id="nav-logout">Logout</a>
+            </form>
+            <!-- <form class="d-flex responsive-mt" role="search"></form> -->
+          </div>
+        </div>
+      </nav>
+      <div id="toast"></div>
+    <div class="container">
+      <main>
+        <!-- home page -->
+        <div id="home-page" class="d-block">
+          <h1>Young Art</h1>
+          <h4>Talented artists at the beginning of the way, you are welcome to post and sell your art.</h4>
+          <hr>
+          <!-- Popup -->
+          <div class="popup-wrapper d-flex justify-content-center align-items-center d-none" id="editPropertiesPopup">
+            <div class="popup-div" id="editPropertiesPopupChild">
+              <div class="card">
+                <img src="" class="card-img-top" alt="" id="editPropertiesPopupImgDisplay" />
+                <div class="card-body">
+                  <h5 class="card-title mb-0" id="editFormTiTle"></h5>
+                  <h5><div class="form-floating">
+                    <input type="text" class="form-control" id="editPropertiesPopupName" placeholder="Name"
+                      aria-describedby="validationServer03Feedback" required />
+                    <label for="editPropertiesPopupName">Name</label>
+                    <div>
+                    </div></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="editPropertiesPopupImg" placeholder="Img" aria-describedby="validationServer03Feedback" required/>
+                      <label for="editPropertiesPopupImg">Img URL</label>
+                      <div id="validationImgFeedback" class="invalid-feedback">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="editPropertiesPopupAlt" placeholder="Alt" />
+                      <label for="editPropertiesPopupAlt">Alt</label>
+                      <div id="validationAltFeedback" class="invalid-feedback">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="editPropertiesPopupCredit" placeholder="Credit" />
+                      <label for="editPropertiesPopupCredit">Credit</label>
+                      <div id="validationCreditFeedback" class="invalid-feedback">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="editPropertiesPopupPrice" placeholder="Price" />
+                      <label for="editPropertiesPopupPrice">Price</label>
+                      <div id="validationPriceFeedback" class="invalid-feedback">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success" id="editPropertiesPopupSaveBtn">
+                    <i class="bi bi-check-circle-fill"></i> Submit
+                  </button>
+                  <button type="button" class="btn btn-danger" id="editPropertiesPopupCancelBtn">
+                    <i class="bi bi-x-circle-fill" id="editPropertiesPopupCancelBtnIcon"></i>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Pictue Card -->
+          <div class="picture-card-wrapper d-flex justify-content-center align-items-center d-none" id="pictureDetailsCard">
+            <div class="picture-card-div" id="pictureDetailsCardChild">
+              <div class="card">
+                <img src="#" class="card-img-top" alt="#" id="pictureDetailsCardImg">
+                <div class="card-body">
+                  <h5 class="card-title" id="pictureDetailsCardName"></h5>
+                  <p class="card-text" id="pictureDetailsCardDescription">description
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id="pictureDetailsCardCreatedAt">Created At</li>
+                  <li class="list-group-item" id="pictureDetailsCardId">id</li>
+                </ul>
+                <div class="card-body">
+                  <button type="button" class="btn btn-secondary" id="pictureCardCloseBtn">close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Buttons -->
+          <div class="d-flex justify-content-between mb-2">
+            <div>
+              <button type="button" class="btn btn-info" id="homeDisplayList">
+                <i class="bi bi-card-list"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-info"
+                id="homeDisplayGallery"
+              >
+                <i class="bi bi-microsoft"></i>
+              </button>
+              <button type="button" class="btn btn-info" id="homeDisplayCarousel">
+                <i class="bi bi-file-earmark-slides"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-info"
+                id="homeDisplaySortASC"
+              >
+                <i class="bi bi-sort-alpha-down"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-info"
+                id="homeDisplaySortDESC"
+              >
+                <i class="bi bi-sort-alpha-up"></i>
+              </button>
+            </div>
+            <form class="d-flex align-self-end" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="homeDisplaySearch"
+              />
+            </form>
+          </div>
+          <div id="propertiesGallery" class="d-none">
+            <div
+              class="row row-cols-1 row-cols-md-3 g-4 mb-5"
+              id="home-page-properties-gallery"
+            ></div>
+          </div>
+
+           <div class="table-responsive-sm d-none mt-3 mb-5" id="propertiesList" >
+              <table id="tablePropertiesList" class="table">
+                  <thead>
+                    <tr>
+                      <th cope="col">Id No.</th>
+                      <th cope="col">Image</th>
+                      <th scope="col">Pic</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Credit</th>
+                      <th scope="col" class="text-center">Buy Now</th>
+                      <th scope="col" class="text-center">edit</th>
+                      <th scope="col" class="text-center">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody id="home-page-properties-list" class="table-group-divider mb-3">
+                    
+                  </tbody>
+              </table>
+          </div>
+
+          <!--<div id="propertiesList" class="d-none">
+            <ul class="list-group" id="home-page-properties-list"></ul>
+          </div>-->
+          <!--<div id="propertiesCarousel" class="d-block">
+            <div id="carouselExample" class="carousel slide">
+              <div class="carousel-inner" id="home-page-properties-carousel">
+              
+                
+                
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="carusel d-none" id="propertiesCarusel">
+            <div class="img-container" id="home-page-properties-carousel"></div>
+            <div class="d-flex justify-content-around">
+              <button type="button" class="btn btn-primary" id="back-carusel-btn">
+                <i class="bi bi-arrow-left"></i>
+              </button>
+              <button type="button" class="btn btn-primary" id="next-carusel-btn">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          </div>-->
+          
+          <div class="carousel d-none mx-auto" id="propertiesCarousel">
+            <div class="img-container" id="home-page-properties-carousel"></div>
+            
+            <div class="d-flex mt-3 justify-content-center">
+              <button type="button" class="btn btn-outline-dark me-3" id="back-carusel-btn">
+                Prev
+              </button>
+              <button type="button" class="btn btn-outline-dark" id="next-carusel-btn">
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Favorites -->
+        <div id="favourites-page" class="d-none mb-5">
+          <h1 class="mt-3 mb-3">My Favorites Pictures</h1>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mb-5"
+              id="favorites-properties-gallery"></div>
+        </div>
+        <!-- about us -->
+        <div id="about-us" class="d-none mb-5">
+          <h1 class="mt-3 mb-3">Young Art- About us</h1>
+          <div class="container">
+            <div class="row">
+                <h3>Who we are?</h3>
+                <div class="col mx-1 p-3 mb-2 bg-danger-subtle text-emphasis-danger rounded">
+                  <h5>On our website we offer real and original art at reasonable prices. In addition, we give an opportunity to young artists
+                  who are looking for a place to expose their paintings and also sell them.</h5> 
+                </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+              <h3>How it works?</h3>
+              <h5>We have 3 display options for the collection of paintings displayed on our website:</h5>
+              </div>
+
+            </div>
+            <div class="row text-center">
+              <div class="col mt-3 mx-1 p-3 mb-2 bg-danger-subtle text-emphasis-danger rounded">
+                <h4 class="mb-3">Slider Display</h4>
+                <img src="../public/assets/sliderDisplay.png" alt="slider display">
+              </div>
+            
+              <div class="col mt-3 mx-1 p-3 mb-2 bg-danger-subtle text-emphasis-danger rounded">
+                <h4 class="mb-3">Cards Display</h4>
+                <img src="../public/assets/cardsDisplay.png" alt="">
+              </div>
+            
+
+              <div class="col mt-3 mx-1 p-3 mb-2 bg-danger-subtle text-emphasis-danger rounded">
+                <h4 class="mb-3">List Display</h4>
+                <img src="../public/assets/listDisplay.png" alt="">
+              </div>
+             
+            </div>
+            <div class="row mt-3">
+              <div class="col p-3 mb-2 bg-danger-subtle text-emphasis-danger mx-1 rounded">
+                <h5>Inside the card you can perform the following actions:</h5>
+                <ul>
+                  <h6>
+                    <li>See more detalis (by clicking on the image)</li>
+                    <li>Buy (Not available yet...)</li>
+                    <li>Edit the Picture Card (for Buisness client only)</li>
+                    <li>Delete the Picture Card (for Buisness client only)</li>
+                  </h6>
+                </ul>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <h3>When?</h3>
+              </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col p-3 mb-2 bg-danger-subtle text-emphasis-danger mx-1 rounded">
+                  <h5>Whenever you want real art to decorate your home, office or any suitable space. You are welcome to sign up.</h5>
+                </div>
+                <div class="col p-3 mb-2 bg-danger-subtle text-emphasis-danger mx-1 rounded">
+                  <h5>If you want to expose or sell your paintings, you are welcome to join as a business client.</h5>
+                </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <h3>Why?</h3>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col p-3 mb-2 bg-danger-subtle text-emphasis-danger mx-1 rounded">
+                <h5>Because we love art and want to make people feel good!!!</h5>
+              </div>
+            </div>
+             
+
+          </div>
+        </div>
+        <!-- contact us -->
+        <div id="contact-us" class="d-none">
+          <h1>Contact us</h1>
+        </div>
+        <!-- register page -->
+        <div id="register-page" class="d-none mt-3 col-6 mx-auto">
+          <h1>Signup Page</h1>
+          <form onsubmit="event.preventDefault()" class="row g-3">
+            <label for="" class="fw-bold">Name</label>
+            <div class="col-md-6">
+              <label for="register-input-name" class="form-label">First Name<span>*</span></label>
+              <input type="text" class="form-control" id="register-input-name" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-name"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="register-input-last-name" class="form-label">Last Name<span>*</span></label>
+              <input type="text" class="form-control" id="register-input-last-name" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-last-name" ></div>
+            </div>
+            <label for="" class="fw-bold">Adress</label>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label" >State</label>
+              <input type="text" class="form-control" id="register-input-state" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-state"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">Country</label>
+              <input type="text" class="form-control" id="register-input-country" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-country"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">City</label>
+              <input type="text" class="form-control" id="register-input-city" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-city"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">Street</label>
+              <input type="text" class="form-control" id="register-input-street" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-street"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">House Number</label>
+              <input type="text" class="form-control" id="register-input-house-number" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-house-number"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">Zip Code</label>
+              <input type="text" class="form-control" id="register-input-zip-code" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-zip-code"></div>
+            </div>
+            <label for="" class="fw-bold">Means of Contact</label>
+            <div class="col-6">
+              <label for="register-input-email" class="form-label">Email<span>*</span></label>
+              <input type="email" class="form-control" id="register-input-email" placeholder="name@example.com" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-email"></div>
+            </div>
+            <div class="col-6">
+              <label for="inputAddress" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="register-input-phone" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-phone"></div>
+            </div>
+            <label for="" class="fw-bold">Security</label>
+            <div class="col-6">
+              <label for="register-input-password" class="form-label">Password<span>*</span></label>
+              <input type="password" class="form-control" id="register-input-password" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-password"></div>
+            </div>
+            <div class="col-6">
+              <label for="register-input-repassword" class="form-label">Re-enter Password<span>*</span></label>
+              <input type="password" class="form-control" id="register-input-repassword" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="register-alert-repassword"></div>
+            </div>
+            <div class="col-12">
+            <div class="form-check">
+              <label class="form-check-label " for="check-if-admin">
+              <input class="form-check-input" type="checkbox" id="check-if-admin">
+                Buisness Client
+              </label>
+            </div>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary" disabled="true" id="register-btn">Submit</button>
+            </div>
+            <div class="d-grid gap-2 mb-5">
+              <button type="submit" class="btn btn-secondary" id="registerCancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <!-- login page -->
+        <div id="login-page" class="d-none mt-3">
+          <h1>Login page</h1>
+          <form onsubmit="event.preventDefault()" >
+              <div class="col-6 mb-3 mx-auto">
+                <label for="login-input-email" class="form-label">Email<span style="color:red">*</span></label>
+                <input type="email" class="form-control" id="login-input-email" placeholder="name@example.com">
+              </div>
+              <div class="alert alert-danger d-none col-6 mx-auto" role="alert" id="login-alert-email">
+                Email is invalid
+              </div>
+              <div class="col-6 mb-3 mx-auto">
+                <label for="login-input-password" class="form-label">Password<span style="color:red">*</span></label>
+                <input type="password" class="form-control" id="login-input-password" placeholder="Password">
+              </div>
+              <div class="alert alert-danger d-none col-6 mx-auto" role="alert" id="login-alert-password">
+                Password is invalid
+              </div>
+              <div class="col-6 mx-auto">
+                Not Register yet?<a href="#" id="linkToRegister">Click here...</a>
+              </div>
+              <div class="col-6 d-grid gap-2 mb-3 mt-3  mx-auto">
+                <button type="submit" class="btn btn-primary" id="login-btn">Submit</button>
+              </div>
+              <div class="col-6 d-grid gap-2 mx-auto">
+                <button type="submit" class="btn btn-secondary" id="loginCancelBtn">Cancel</button>
+              </div>
+          </form>
+        </div>
+        <!-- Profile Page -->
+        <div id="profile-page" class="d-none mt-3 col-6 mx-auto">
+          <h1>Profile page</h1>
+          <form onsubmit="event.preventDefault()" class="row g-3">
+            <label for="" class="fw-bold">Name</label>
+            <div class="col-md-6">
+              <label for="profile-input-name" class="form-label">First Name<span>*</span></label>
+              <input type="text" class="form-control" id="profile-input-name" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-name"></div>
+            </div>
+            <div class="col-md-6">
+              <label for="profile-input-last-name" class="form-label">Last Name<span>*</span></label>
+              <input type="text" class="form-control" id="profile-input-last-name" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-last-name"></div>
+            </div>
+            <label for="" class="fw-bold">Adress</label>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">State</label>
+              <input type="text" class="form-control" id="profile-input-state" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-state"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">Country</label>
+              <input type="text" class="form-control" id="profile-input-country" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-country"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">City</label>
+              <input type="text" class="form-control" id="profile-input-city" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-city"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">Street</label>
+              <input type="text" class="form-control" id="profile-input-street" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-street"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">House Number</label>
+              <input type="text" class="form-control" id="profile-input-house-number" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-house-number"></div>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label">Zip Code</label>
+              <input type="text" class="form-control" id="profile-input-zip-code" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-zip-code"></div>
+            </div>
+            <label for="" class="fw-bold">Means of Contact</label>
+            <div class="col-6">
+              <label for="profile-input-email" class="form-label">Email<span>*</span></label>
+              <input type="email" class="form-control" id="profile-input-email" placeholder="name@example.com"
+                aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-email"></div>
+            </div>
+            <div class="col-6">
+              <label for="inputAddress" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="profile-input-phone" aria-describedby="inputGroupPrepend">
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-phone"></div>
+            </div>
+            <label for="" class="fw-bold">Security</label>
+            <div class="col-6">
+              <label for="profile-input-password" class="form-label">Password<span>*</span></label>
+              <input type="password" class="form-control" id="profile-input-password" aria-describedby="inputGroupPrepend"
+                required>
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-password"></div>
+            </div>
+            <div class="col-6">
+              <label for="profile-input-repassword" class="form-label">Re-enter Password<span>*</span></label>
+              <input type="password" class="form-control" id="profile-input-repassword" aria-describedby="inputGroupPrepend"
+                required>
+              <div class="invalid-feedback d-none" role="alert" id="profile-alert-repassword"></div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <label class="form-check-label " for="check-is-admin2">
+                  <input class="form-check-input" type="checkbox" id="check-is-admin2">
+                  Buisness Client
+                </label>
+              </div>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary" disabled="true" id="profile-btn">Update</button>
+            </div>
+            <div class="d-grid gap-2 mb-5">
+              <button type="submit" class="btn btn-secondary" id="profileCancelBtn">Cancel</button>
+            </div>
+          </form>
+          <!--<form onsubmit="event.preventDefault()">
+            <div class="col-6 mb-3 mx-auto">
+              <label for="profile-input-name" class="form-label">First Name</label>
+              <input type="test" class="form-control" id="profile-input-name">
+            </div>
+            <div class="alert alert-danger d-none col-6 mx-auto" role="alert" id="profile-alert-name">
+              First Name is invalid
+            </div>
+            <div class="col-6 mb-3 mx-auto">
+              <label for="login-input-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="profile-input-email">
+            </div>
+            <div class="alert alert-danger d-none col-6 mx-auto" role="alert" id="profile-alert-email">
+              email is invalid
+            </div>
+            <div class="col-6 mb-3 mx-auto">
+              <label for="profile-input-password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="profile-input-password">
+            </div>
+            <div class="alert alert-danger d-none col-6 mx-auto" role="alert" id="profile-alert-password">
+              Password is invalid
+            </div>
+            <div class="col-6 mx-auto">
+              <div class="form-check">
+                <label class="form-check-label " for="check-if-admin2"></label>
+                <input class="form-check-input" type="checkbox" id="check-if-admin2" value="check-if-admin2">
+                Buisness Client
+                </label>
+              </div>
+            </div>
+            <div class="col-6 d-grid gap-2 mb-3 mt-3  mx-auto">
+              <button type="submit" class="btn btn-primary" disabled="true" id="profile-btn">Update</button>
+            </div>
+            <div class="col-6 d-grid gap-2 mx-auto">
+              <button type="submit" class="btn btn-secondary" id="profileCancelBtn">Cancel</button>
+            </div>
+          </form>-->
+
+        </div>
+        <!-- 404 Page not found Page -->
+        <div id="page-not-found-page" class="d-none">
+          <h1 class="mt-5">EROR 404</h1>
+          <p>Page Not found</p>
+          <a href="" id="link-to-home">Click here to return to the Home Page</a>
+        </div>
+      </main>
+    </div>
+    <footer class="footer">
+        created by Dikla Shaked 2023©️
+    </footer>
+    <script src="../src/app.js" type="module"></script>
+  </body>
+</html>
